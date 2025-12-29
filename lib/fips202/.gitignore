@@ -1,0 +1,5 @@
+debug*.c
+gen_vectors.py
+debug_test
+test_fips*.c
+test_hw
