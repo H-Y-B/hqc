@@ -75,6 +75,8 @@ void hqc_pke_keygen(uint8_t *ek_pke, uint8_t *dk_pke, uint8_t *seed) {
     vect_print(s, VEC_N_SIZE_BYTES);
 #endif
 
+    keccak_state_free((keccak_state*)&dk_xof_ctx);
+    keccak_state_free((keccak_state*)&ek_xof_ctx);
     // Zeroize sensitive data
     memset_zero(keypair_seed, sizeof keypair_seed);
     memset_zero(x, sizeof x);
@@ -146,6 +148,7 @@ void hqc_pke_encrypt(ciphertext_pke_t *c_pke, const uint8_t *ek_pke, const uint6
     vect_print(c_pke->v, VEC_N1N2_SIZE_BYTES);
 #endif
 
+    keccak_state_free((keccak_state*)&theta_xof_ctx);
     // Zeroize sensitive data
     memset_zero(r1, sizeof r1);
     memset_zero(r2, sizeof r2);
